@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="customersApp"><!-- AngularJS -->
+<head>
+    <meta charset="utf-8">
+    <title>Alex&apos; AngularJS App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="img/icon_small.ico">
+    
+    <!-- Javascript Files
+    ================================================== -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+
+</head>
+
+<body ng-init="customers=['Ted', 'Tim', 'Michelle', 'Zed']"><!-- AngularJS -->
+<!-- Note: stopped video at approx. 12:15 (https://www.youtube.com/watch?v=tnXO-i7944M) --> 
+<!-- content begin -->
+	<div id="content">
+    	<div class="container">
+			<div class="row">
+				<div class="span12">
+					<h1>Alex&apos;s AngularJS App</h1>
+					
+					<div ng-controller="CustomersController">
+						Search: <input type = "text" ng-model="searchText" /><!-- AngularJS -->
+						{{ searchText }}<!-- AngularJS -->
+						<br />
+						<h3>Customers:</h3>
+						<table>
+							<tr ng-repeat="cust in customers | filter:searchText">
+								<td>{{ cust.name }}</td>
+								<td>{{ cust.total | currency}}</td>
+							</tr>
+						</table>
+					</div>
+					
+					
+				</div><!--end span12 -->				     		
+			</div><!--end row-->
+		</div><!--end container-->
+	</div><!-- content close -->
+	
+	<script>
+		var app = angular.module('customersApp', []);
+		
+		app.controller('CustomersController', function($scope) {
+			$scope.customers = [
+				{"id": 1, "name":"Ted", "total": 5.996},
+				{"id": 2, "name":"Michelle", "total": 10.994},
+				{"id": 3, "name":"Alex", "total": 10.99},
+				{"id": 4, "name":"Jen", "total": 15.994},
+			];
+		});
+	</script>
+
+</body>
+</html>
